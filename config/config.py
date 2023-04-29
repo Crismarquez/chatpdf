@@ -7,6 +7,7 @@ from rich.logging import RichHandler
 BASE_DIR = Path(__file__).parent.parent.absolute()
 CONFIG_DIR = Path(BASE_DIR, "config")
 DATA_DIR = Path(BASE_DIR, "data")
+PROEJECTS_DIR = Path(DATA_DIR, "projects")
 STORE_DIR = Path(BASE_DIR, "store")
 MODELS_DIR = Path(STORE_DIR, "models")
 RESULTS_DIR = Path(BASE_DIR, "results")
@@ -16,6 +17,7 @@ LOGS_DIR = Path(BASE_DIR, "logs")
 
 # Create dirs
 DATA_DIR.mkdir(parents=True, exist_ok=True)
+PROEJECTS_DIR.mkdir(parents=True, exist_ok=True)
 RESULTS_DIR.mkdir(parents=True, exist_ok=True)
 LOGS_DIR.mkdir(parents=True, exist_ok=True)
 
