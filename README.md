@@ -4,7 +4,12 @@ Chat whith your own pdf files :)
 
 Demo version of End-to-end service to analize pdf documents using LLMs.
 
-This is a two stage solution, first, aplied robust ocr solution using *DocTR* to generate the dataset, and then fine tuning a LLM model using *LangChain* and *Open AI*
+This is a two stage solution, first, aplied robust ocr engineering using *DocTR* to generate the dataset, and then fine tuning a LLM model using *LangChain* and *Open AI*
+Finally expose chat with FastAPI
+
+## System requirements
+- Ubuntu 20
+- Python >=3.9
 
 ## Getting Started
 1. Clone repo
@@ -24,6 +29,7 @@ This is a two stage solution, first, aplied robust ocr solution using *DocTR* to
 
     python3 -m pip install --upgrade pip setuptools wheel
     pip install "python-doctr[torch]"
+    pip install langchain
     pip install -r requirements.txt
     export PYTHONPATH="${PYTHONPATH}:${PWD}"
 <prev>
