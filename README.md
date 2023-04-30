@@ -1,11 +1,20 @@
 # ChatPDF
 
+![Fastapi](https://img.shields.io/badge/fastapi-109989?style=for-the-badge&logo=FASTAPI&logoColor=white)
+
 Chat whith your own pdf files :) 
 
 Demo version of End-to-end service to analize pdf documents using LLMs.
 
 This is a two stage solution, first, aplied robust ocr engineering using *DocTR* to generate the dataset, and then fine tuning a LLM model using *LangChain* and *Open AI*
 Finally expose chat with FastAPI
+
+**OCR Engineering**
+
+![image](https://drive.google.com/file/d/1fa1M9zx3FFzDAq72bFm9JT_yrIphdZWc/view?usp=share_link)
+
+**Chat using FastAPI**
+
 
 ## System requirements
 - Ubuntu 20
