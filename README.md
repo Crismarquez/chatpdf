@@ -15,6 +15,9 @@ Finally expose chat with FastAPI
 
 **Chat using FastAPI**
 
+![image](https://github.com/crismarquez/chatpdf/blob/main/assets/post.png?raw=true)
+![image](https://github.com/crismarquez/chatpdf/blob/main/assets/response.png?raw=true)
+
 
 ## System requirements
 - Ubuntu 20
@@ -72,7 +75,7 @@ to run with fastapi
 
 <prev>
 
-    uvicorn ....
+    uvicorn app.main:app --port 5000
 
 <prev>
 
