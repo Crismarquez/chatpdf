@@ -11,7 +11,7 @@ Finally expose chat with FastAPI
 
 **OCR Engineering**
 
-![image](https://github.com/crismarquez/chatpdf/ocr_show.png?raw=true)
+![image](https://github.com/crismarquez/chatpdf/blob/main/ocr_show.png?raw=true)
 
 **Chat using FastAPI**
 
