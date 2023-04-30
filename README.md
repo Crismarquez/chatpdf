@@ -47,19 +47,8 @@ Finally expose chat with FastAPI
     export PYTHONPATH="${PYTHONPATH}:${PWD}"
 <prev>
 
-4. setup keys
-
-5. Estructure of dataser directory
-
-    chatpdf
-
-        +--data/
-            +--projects/
-                +--project_name/
-                    +--documents/
-                    +--text_files/
-
-    OCR dataloaders will search pdf files in documents folder and then generate text files into text_files folder
+4. setup keys for open ai, into .env file:
+    OPENAI_API_KEY="your-open-ai-key"
 
 
 ## Run Demo 
@@ -71,19 +60,35 @@ Finally expose chat with FastAPI
 
 <prev>
 
-to run with fastapi
+OCR engineering in default project (Amazon report - 2022)
 
+<prev>
+
+    python3 src/main.py ocrengineering
+
+<prev>
+
+Run FasAPI for chat enpoind
 <prev>
 
     uvicorn app.main:app --port 5000
 
 <prev>
 
-to run some interaction funtions use main.py from CLI:
 
-<prev>
+## Use with your own pdf file
 
-    python3 main.py ocrengineering --project-name anual_report
+Put manualy your pdf files into this structure:
 
-    
-<prev>
+    chatpdf
+
+        +--data/
+            +--projects/
+                +--project_name/
+                    +--documents/
+                        1-file.pdf
+                        ....
+                        n-file.pdf
+                    +--text_files/
+
+    OCR dataloaders will search pdf files in documents folder and then generate text files into text_files folder
