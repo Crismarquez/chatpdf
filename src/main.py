@@ -4,7 +4,7 @@ import typer
 from doctr.io import DocumentFile
 import gdown
 
-from src.engineering import OCREngineering
+from src.engineering import OCREngineering, LLMEngineering
 from src.recognition import Recognition
 from src.data import DatasetManager
 from config.config import DATA_DIR, DEFAULT_FILES, PROEJECTS_DIR, logger
@@ -40,7 +40,6 @@ def showocr(pdf_file: Optional[str]=None):
         results = ocr_recognition._recognize(doc)
         results.show(doc)
 
-
 @app.command()
 def ocrengineering(project_name: Optional[str] = None):
     if project_name is None:
@@ -59,7 +58,6 @@ def ocrengineering(project_name: Optional[str] = None):
     ocr_engineering.process()
 
     logger.info("Done!")
-
 
 @app.command()
 def pdftotext(pdf_file: Optional[str]):
@@ -102,6 +100,18 @@ def pdftotext(pdf_file: Optional[str]):
                 lines.append(" ".join(words_line))
 
     # save .txt file
+
+@app.command()
+def chatpdf(project_name: str, query: str):
+    data_manager = DatasetManager(project_name=project_name)
+
+    llm_engineering = LLMEngineering(
+        dataset_manager=data_manager    
+    )
+
+    response = llm_engineering.predict(query, response_mode="compact")
+
+    return response
 
 
 if __name__ == "__main__":

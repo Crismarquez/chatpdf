@@ -52,6 +52,7 @@ class LLMEngineering:
     def __init__(self, dataset_manager: DatasetManager):
         self.dataset_manager = dataset_manager
         self.model_intenced = False
+        self._load_index()
 
     def train(self, model_name:str="text-davinci-002", num_outputs: int = 256):
         self._dataloader()
