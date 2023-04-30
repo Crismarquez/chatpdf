@@ -11,7 +11,7 @@ Finally expose chat with FastAPI
 
 **OCR Engineering**
 
-![image](https://drive.google.com/file/d/1fa1M9zx3FFzDAq72bFm9JT_yrIphdZWc/view?usp=share_link)
+![alt text](https://drive.google.com/file/d/1fa1M9zx3FFzDAq72bFm9JT_yrIphdZWc/view?usp=share_link)
 
 **Chat using FastAPI**
 
