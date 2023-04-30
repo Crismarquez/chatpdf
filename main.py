@@ -1,18 +1,29 @@
 from typing import Optional
+from pathlib import Path
 import typer
 from doctr.io import DocumentFile
+import gdown
 
 from src.engineering import OCREngineering
 from src.recognition import Recognition
 from src.data import DatasetManager
-from config.config import DATA_DIR, logger
+from config.config import DATA_DIR, DEFAULT_FILES, PROEJECTS_DIR, logger
 
 app = typer.Typer()
 ocr_recognition = Recognition(det_arch="db_resnet50", reco_arch="crnn_vgg16_bn")
 
 @app.command()
-def showocr(pdf_file: Optional[str]):
-    pdf_dir = DATA_DIR / pdf_file
+def showocr(pdf_file: Optional[str]=None):
+    if pdf_file is None:
+        logger.info("Downloading sample pdf file")
+        url = DEFAULT_FILES["ocr_show"]
+        gdown.download_folder(url, output = str(DATA_DIR / "ocr_show"), quiet=False)
+        pdf_file = "Ownership_DeedRecording-1.pdf"
+
+        pdf_dir = Path(DATA_DIR, "ocr_show" , pdf_file)
+
+    else:
+        pdf_dir = DATA_DIR / pdf_file
 
     if not pdf_dir.exists():
         logger.error(f"File {pdf_dir} does not exist")
@@ -31,7 +42,14 @@ def showocr(pdf_file: Optional[str]):
 
 
 @app.command()
-def ocrengineering(project_name: Optional[str] = "anual_reports"):
+def ocrengineering(project_name: Optional[str] = None):
+    if project_name is None:
+        logger.info("Project name not provided, using default project name 'anual_report'")
+        logger.info("Downloading sample pdf file")
+        url = DEFAULT_FILES["anual_report"]
+        gdown.download_folder(url, output = str(PROEJECTS_DIR/"anual_report"), quiet=False)
+        project_name = "anual_report"
+
     data_manager = DatasetManager(project_name=project_name)
 
     ocr_engineering = OCREngineering(

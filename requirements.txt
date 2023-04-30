@@ -1,1 +1,8 @@
 typer==0.7.0
+gdown==4.7.1
+python-dotenv==1.0.0
+openai==0.27.5
+rich==13.3.5
+rapidfuzz==2.15.1
+tiktoken==0.3.3
+unstructured==0.6.2

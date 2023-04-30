@@ -11,6 +11,8 @@ class DatasetManager:
 
     def get_pdf_files(self):
         pdf_files = [f for f in self.project_files["documents"] if f.suffix == ".pdf"]
+        # sort by index
+        pdf_files = sorted(pdf_files, key=lambda x: int(x.name.split("-")[0]) )
         return pdf_files
 
     def save_text(self, lines: list):

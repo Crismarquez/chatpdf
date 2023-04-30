@@ -1,8 +1,11 @@
+import os
 from pathlib import Path
 import sys
 import logging
 import logging.config
 from rich.logging import RichHandler
+from dotenv import dotenv_values
+
 
 BASE_DIR = Path(__file__).parent.parent.absolute()
 CONFIG_DIR = Path(BASE_DIR, "config")
@@ -21,6 +24,17 @@ PROEJECTS_DIR.mkdir(parents=True, exist_ok=True)
 RESULTS_DIR.mkdir(parents=True, exist_ok=True)
 LOGS_DIR.mkdir(parents=True, exist_ok=True)
 
+DEFAULT_FILES = {
+    "ocr_show": "https://drive.google.com/drive/folders/1__EaMm_D4sZUj4dfXz_WnOAMHzFm3rkh?usp=share_link",
+    "anual_report": "https://drive.google.com/drive/folders/1TZfU9ignpXB2FiNgQ0ci-F0oDmreHgzY?usp=share_link"
+}
+
+ENV_VARIABLES = {
+    **dotenv_values(".env"),  # load environment variables from .env file
+    **os.environ,  # override loaded values with environment variables
+}
+
+os.environ['OPENAI_API_KEY'] = ENV_VARIABLES['OPENAI_API_KEY']
 
 # Logger
 logging_config = {
