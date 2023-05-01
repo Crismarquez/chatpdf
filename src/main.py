@@ -12,6 +12,13 @@ from config.config import DATA_DIR, DEFAULT_FILES, PROEJECTS_DIR, logger
 app = typer.Typer()
 ocr_recognition = Recognition(det_arch="db_resnet50", reco_arch="crnn_vgg16_bn")
 
+# TODO: load all models from projects folder
+ll_models = {
+    "anual_report": LLMEngineering(
+        dataset_manager=DatasetManager(project_name="anual_report")
+    ),
+}
+
 @app.command()
 def showocr(pdf_file: Optional[str]=None):
     if pdf_file is None:
@@ -103,13 +110,18 @@ def pdftotext(pdf_file: Optional[str]):
 
 @app.command()
 def chatpdf(project_name: str, query: str):
-    data_manager = DatasetManager(project_name=project_name)
+    # data_manager = DatasetManager(project_name=project_name)
 
-    llm_engineering = LLMEngineering(
-        dataset_manager=data_manager    
-    )
+    # llm_engineering = LLMEngineering(
+    #     dataset_manager=data_manager    
+    # )
+    # response = llm_engineering.predict(query, response_mode="compact")
 
-    response = llm_engineering.predict(query, response_mode="compact")
+    if project_name not in ll_models.keys():
+        logger.error(f"Project name {project_name} not found")
+        return {"error": f"Project name {project_name} not found"}
+    
+    response = ll_models[project_name].predict(query, response_mode="compact")
 
     return response
 
@@ -122,6 +134,8 @@ def train_chatpdf(project_name: str):
     )
 
     llm_engineering.train()
+
+    ll_models[project_name] = llm_engineering
 
     logger.info("Done!")
     return "Done!"

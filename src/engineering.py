@@ -11,11 +11,24 @@ from config.config import DATA_DIR, ENV_VARIABLES, logger
 
 
 class OCREngineering:
+    """
+    This class is used to process all pdf files in the documents folder
+    --------------------------------
+    Args:
+        recognition (Recognition): Recognition class, used to recognize text from pdf files
+        dataset_manager (DatasetManager): DatasetManager class, used to manage all files in the project folder
+    
+    Methods:
+        process: process all pdf files in the documents folder and save the text in the text folder
+    """
     def __init__(self, recognition: Recognition, dataset_manager: DatasetManager):
         self.recognition = recognition
         self.dataset_manager = dataset_manager
 
     def process(self):
+        """
+        Process all pdf files in the documents folder and save the text in the text folder
+        """
         pdf_files = self.dataset_manager.get_pdf_files()
         if len(pdf_files) == 0:
             logger.error(f"No pdf files found in documents folder")
@@ -49,12 +62,29 @@ class OCREngineering:
         pass
 
 class LLMEngineering:
+    """
+    This class is to manage the Lenguage models, it can be used to train and predict
+    --------------------------------
+    Args:
+        dataset_manager (DatasetManager): DatasetManager class, used to manage all files in the project folder
+    
+    Methods:
+        train: train the language model
+        predict: get the response model from the query
+    """
     def __init__(self, dataset_manager: DatasetManager):
         self.dataset_manager = dataset_manager
         self.model_intenced = False
         self._load_index()
 
     def train(self, model_name:str="text-davinci-002", num_outputs: int = 256):
+        """
+        Train the language model
+        --------------------------------
+        Args:
+            model_name (str): model name to use, default is text-davinci-002
+            num_outputs (int): number of outputs to generate, default is 256
+        """
         self._dataloader()
         llm_predictor = LLMPredictor(
             llm=OpenAI(temperature=0, model_name=model_name, max_tokens=num_outputs)
@@ -67,6 +97,9 @@ class LLMEngineering:
         self._save_index()
 
     def predict(self, query: str, response_mode: str = "compact"):
+        """
+        Get the response model from the query
+        """
         if not self.model_intenced:
             logger.warning("No index found, please run train method")
             return None

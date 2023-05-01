@@ -4,12 +4,24 @@ from config.config import PROEJECTS_DIR, logger
 
 
 class DatasetManager:
+    """
+    Dataset Manager
+    ---------------
+    args:
+        project_name: str - project name
+    
+    """
     def __init__(self, project_name: str):
         self.project_name = project_name
         self.project_dir = PROEJECTS_DIR / self.project_name
         self._setup_dir()
 
     def get_pdf_files(self):
+        """
+        Get all pdf files in the documents folder, sorted by index.
+        In order to process the pdf files, the pdf files must be named with the following format:
+        {index}-{name}.pdf
+        """
         pdf_files = [f for f in self.project_files["documents"] if f.suffix == ".pdf"]
         # sort by index
         pdf_files = sorted(pdf_files, key=lambda x: int(x.name.split("-")[0]) )
