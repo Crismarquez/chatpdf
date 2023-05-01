@@ -2,7 +2,7 @@
 
 ![Fastapi](https://img.shields.io/badge/fastapi-109989?style=for-the-badge&logo=FASTAPI&logoColor=white)
 
-Chat whith your own pdf files :) 
+Chat whith your own pdf files :grinning:
 
 Demo version of End-to-end service to analize pdf documents using LLMs.
 
