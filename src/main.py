@@ -113,6 +113,18 @@ def chatpdf(project_name: str, query: str):
 
     return response
 
+@app.command()
+def train_chatpdf(project_name: str):
+    data_manager = DatasetManager(project_name=project_name)
+
+    llm_engineering = LLMEngineering(
+        dataset_manager=data_manager    
+    )
+
+    llm_engineering.train()
+
+    logger.info("Done!")
+    return "Done!"
 
 if __name__ == "__main__":
     app()

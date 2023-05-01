@@ -56,7 +56,7 @@ Finally expose chat with FastAPI
 ## Run Demo OCR - Engineering
 <prev>
 
-    python3 main.py showocr
+    python3 src/main.py showocr
 
 <prev>
 
@@ -68,13 +68,27 @@ OCR engineering in default project (Amazon report - 2022)
 
 <prev>
 
-Run FasAPI for chat enpoind
+### Run FasAPI Endpoints
 <prev>
 
     uvicorn app.main:app --port 5000
 
 <prev>
 
+**Run with docs**
+
+    http://127.0.0.1:5000/docs
+
+
+**Train endpoint**
+
+    http://127.0.0.1:5000/docs#/chatpdf/train_chatpdf_route_train_chatpdf_post
+
+post the project *anual_report*
+
+**Chat with files**
+
+    http://127.0.0.1:5000/docs#/chatpdf/chatpdf_route_chatpdf_post
 
 ## Use with your own pdf file
 
@@ -91,4 +105,4 @@ Put manualy your pdf files into this structure:
                         n-file.pdf
                     +--text_files/
 
-    OCR dataloaders will search pdf files in documents folder and then generate text files into text_files folder
+OCR dataloaders will search pdf files in documents folder and then generate text files into text_files folder
